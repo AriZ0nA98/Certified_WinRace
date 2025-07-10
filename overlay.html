@@ -53,13 +53,11 @@
 <script>
   const page1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkpnjJ25IUkJhL7maydKJo8iy6avi7Bvp7z7cXQeRQFr_WhWW1kS8eichk9jlnEcWHGWlyCyWeJTv_/pubhtml?gid=0&single=true&widget=true&headers=false";
   const page2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkpnjJ25IUkJhL7maydKJo8iy6avi7Bvp7z7cXQeRQFr_WhWW1kS8eichk9jlnEcWHGWlyCyWeJTv_/pubhtml?gid=1015821902&single=true&widget=true&headers=false";
-  const page3 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkpnjJ25IUkJhL7maydKJo8iy6avi7Bvp7z7cXQeRQFr_WhWW1kS8eichk9jlnEcWHGWlyCyWeJTv_/pubhtml?gid=1177424721&amp;single=true&amp;widget=true&amp;headers=false";
-  
   let current = 1;
 
   function switchPage() {
-    document.getElementById("sheetFrame").src = current === 1 ? page1 : page2 : page3;
-    current = current === 1 ? 2 ? 3 : 1;
+    document.getElementById("sheetFrame").src = current === 1 ? page1 : page2;
+    current = current === 1 ? 2 : 1;
   }
 
   switchPage(); // Start mit Seite 1

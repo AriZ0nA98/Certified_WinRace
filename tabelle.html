@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WIN-RACE Turnier Tabelle</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
   body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -13,8 +15,14 @@
   }
   .container {
     max-width: 900px;
-    margin: 20px auto;
-    padding: 0 15px 40px;
+    margin: 20px auto 40px;
+    padding: 0 15px;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
   }
   .sponsor {
     display: flex;
@@ -22,7 +30,6 @@
     align-items: flex-start;
     color: #ffa500;
     font-weight: bold;
-    margin-bottom: 10px;
     font-size: 0.65rem;
   }
   .sponsor img {
@@ -30,12 +37,11 @@
     width: 70px;
     object-fit: contain;
   }
-  .ci-logo {
-    position: absolute;
-    top: 20px;
-    right: 490px;
+  .ci-logo-wrapper img {
     width: 110px;
     opacity: 0.7;
+    margin-top: 14px;
+    object-fit: contain;
   }
   h1 {
     font-family: 'Bebas Neue', sans-serif;
@@ -95,12 +101,15 @@
 </head>
 
 <body>
-  <img src="https://raw.githubusercontent.com/AriZ0nA98/Certified_WinRace/refs/heads/testarea/certified_logo.png" alt="Certified Logo" class="ci-logo" />
-
   <div class="container">
-    <div class="sponsor">
-      <div>Sponsored by</div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games Logo" />
+    <div class="topbar">
+      <div class="sponsor">
+        <div>Sponsored by</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games Logo" />
+      </div>
+      <div class="ci-logo-wrapper">
+        <img src="https://raw.githubusercontent.com/AriZ0nA98/Certified_WinRace/testarea/certified_logo.png" alt="Certified Logo" />
+      </div>
     </div>
 
     <h1>WIN-RACE</h1>
@@ -173,6 +182,5 @@ setInterval(fetchSheetData, 2000);
     if (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) e.preventDefault();
   });
 </script>
-
 </body>
 </html>

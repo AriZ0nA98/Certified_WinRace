@@ -141,28 +141,33 @@
   <script>
   const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRUzeZnCmpPz6i0TcCMZdZ0eh_mZxRyAWYYnizKzFLcuYyS57AoxIcEfpEvUwZsndE5rXTED_xfxPaq/pub?output=csv';
 
-  function loadData(){
-    Papa.parse(csvUrl, {
-      download: true,
-      header: true,
-      complete: function(results){
-        const tbody = document.querySelector("#teams-table tbody");
-        tbody.innerHTML = "";
-        results.data.forEach(row=>{
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${row.Teamname}</td>
-            <td>${row.Part1==="TRUE"?"✓":""}</td>
-            <td>${row.Part2==="TRUE"?"✓":""}</td>
-            <td>${row.Part3==="TRUE"?"✓":""}</td>
-            <td>${row.Part4==="TRUE"?"✓":""}</td>
-          `;
-          tbody.appendChild(tr);
-        });
-      },
-      error: function(err){ console.error("Fehler beim Laden:", err); }
-    });
-  }
+  function loadData() {
+  Papa.parse(csvUrl, {
+    download: true,
+    header: true,
+    complete: function(results) {
+      console.log("Geladene Daten:", results.data);
+      const tbody = document.querySelector("#teams-table tbody");
+      tbody.innerHTML = "";
+      results.data.forEach(row => {
+        console.log("Verarbeite Zeile:", row);
+        if (!row.Teamname) return;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.Teamname}</td>
+          <td>${row.Part1 === "TRUE" ? "✓" : ""}</td>
+          <td>${row.Part2 === "TRUE" ? "✓" : ""}</td>
+          <td>${row.Part3 === "TRUE" ? "✓" : ""}</td>
+          <td>${row.Part4 === "TRUE" ? "✓" : ""}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    },
+    error: function(err) {
+      console.error("Fehler beim Laden der Tabelle:", err);
+    }
+  });
+}
 
   window.onload = () => {
     loadData();

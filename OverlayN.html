@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WIN-RACE Turnier Tabelle</title>
+<style>
+  /* Hintergrund & Layout */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #000000, #ff7200);
+    color: #ffa500;
+  }
+  .container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px 40px;
+  }
+
+  /* Oben links Sponsored by + Epic Games */
+  .sponsor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #ffa500;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.65rem;
+  }
+  .sponsor img {
+    margin-top: 8px;
+    width: 70px;
+    object-fit: contain;
+  }
+
+  /* Oben rechts Certified Identity Logo */
+  .ci-logo {
+    position: fixed;
+    top: 20px;
+    right: 490px;
+    width: 110px;
+    opacity: 0.7;
+  }
+
+  /* Titel */
+  h1 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+    color: #ff7200;
+    text-shadow: 1px 1px 3px #ffae42;
+  }
+
+  /* Tabelle */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffa500;
+    background: linear-gradient(90deg, #000000, #1a1a1a);
+    box-shadow: 0 0 15px #ff7200;
+  }
+  th, td {
+    border: 1px solid #ff7200;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+  th {
+    background-color: #ff7200;
+    color: #000;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffa500;
+  }
+  footer .liveon {
+    font-size: 1.2rem;
+  }
+  footer img {
+    margin: 6px 0;
+    height: 36px;
+  }
+  footer .channels {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  footer .powered {
+    margin-top: 12px;
+  }
+  footer .identity {
+    font-weight: 900;
+    color: #ffae42;
+    margin-top: 4px;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/tabletop@1.6.0/tabletop.min.js"></script>
+</head>
+
+<body>
+  <img src="https://via.placeholder.com/110x60?text=Certified+Identity" alt="Certified Identity Logo" class="ci-logo" />
+
+  <div class="container">
+    <div class="sponsor">
+      <div>Sponsored by</div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games Logo" />
+    </div>
+
+    <h1>WIN-RACE</h1>
+
+    <table id="teams-table">
+      <thead>
+        <tr>
+          <th>Teams</th>
+          <th>Blitz Royale</th>
+          <th>Zero Build</th>
+          <th>Party Animals B2B</th>
+          <th>Fall Guys Münze</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Daten kommen hier rein -->
+      </tbody>
+    </table>
+
+    <footer>
+      <div class="liveon">Live on</div>
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg" alt="Twitch Logo" />
+      <div class="channels"><strong>MckyTV</strong> &amp; <strong>xTheSolutionTV</strong></div>
+      <div class="powered">Powered by</div>
+      <div class="identity">Certified Identity</div>
+    </footer>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRUzeZnCmpPz6i0TcCMZdZ0eh_mZxRyAWYYnizKzFLcuYyS57AoxIcEfpEvUwZsndE5rXTED_xfxPaq/pub?output=csv';
+
+      Tabletop.init({
+        key: publicSpreadsheetUrl,
+        simpleSheet: true,
+        callback: showInfo
+      });
+
+      function showInfo(data) {
+        const tbody = document.querySelector("#teams-table tbody");
+        tbody.innerHTML = "";
+
+        data.forEach(row => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${row.Teamname || row.teamname || row.Team || ""}</td>
+            <td>${row.Part1 === "TRUE" ? "✓" : ""}</td>
+            <td>${row.Part2 === "TRUE" ? "✓" : ""}</td>
+            <td>${row.Part3 === "TRUE" ? "✓" : ""}</td>
+            <td>${row.Part4 === "TRUE" ? "✓" : ""}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

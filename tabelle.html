@@ -159,5 +159,20 @@ async function fetchSheetData() {
 fetchSheetData();
 setInterval(fetchSheetData, 2000);
 </script>
+
+<script>
+  // Rechtsklick deaktivieren
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // Tastenkombinationen blockieren (F12, Strg+U, Dev Tools)
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "F12") e.preventDefault();
+    if (e.ctrlKey && e.key.toLowerCase() === "u") e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) e.preventDefault();
+  });
+</script>
+
 </body>
 </html>

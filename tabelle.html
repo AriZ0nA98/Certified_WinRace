@@ -1,177 +1,163 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>WIN-RACE Overlay</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #000000, #ff6600);
-      font-family: 'Arial Black', sans-serif;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 20px 40px 0 40px;
-    }
-
-    .title-block {
-      text-align: left;
-    }
-
-    .title-block h1 {
-      margin: 0;
-      font-size: 48px;
-      letter-spacing: 3px;
-    }
-
-    .sponsor {
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    .sponsor img {
-      margin-top: 8px;
-      width: 100px;
-      height: auto;
-    }
-
-    .logo-topright {
-      width: 100px;
-      margin-top: 10px;
-    }
-
-    .tabelle {
-      width: 90%;
-      margin: 40px auto;
-      border-collapse: collapse;
-      background-color: rgba(0,0,0,0.6);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .tabelle th, .tabelle td {
-      border: 1px solid orange;
-      padding: 12px;
-      text-align: center;
-    }
-
-    .tabelle th {
-      background-color: orange;
-      color: black;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .twitch-logo {
-      width: 30px;
-      vertical-align: middle;
-      margin-top: 8px;
-    }
-
-    .twitch-block img {
-      display: block;
-      margin: 0 auto 5px auto;
-    }
-
-    .twitch-block {
-      margin-bottom: 5px;
-    }
-
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WIN-RACE Turnier Tabelle</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #000000, #ff7200);
+    color: #ffa500;
+  }
+  .container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px 40px;
+  }
+  .sponsor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #ffa500;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.65rem;
+  }
+  .sponsor img {
+    margin-top: 8px;
+    width: 70px;
+    object-fit: contain;
+  }
+  .ci-logo {
+    position: absolute;
+    top: 20px;
+    right: 490px;
+    width: 110px;
+    opacity: 0.7;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    background: linear-gradient(90deg, #FFA500, #FF4500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffa500;
+    background: linear-gradient(90deg, #000000, #1a1a1a);
+    box-shadow: 0 0 15px #ff7200;
+  }
+  th, td {
+    border: 1px solid #ff7200;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+  th {
+    background-color: #ff7200;
+    color: #000;
+  }
+  footer {
+    margin-top: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffa500;
+  }
+  footer .liveon {
+    font-size: 1.2rem;
+  }
+  footer img {
+    margin: 6px 0;
+    height: 36px;
+  }
+  footer .channels {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  footer .powered {
+    margin-top: 12px;
+  }
+  footer .identity {
+    font-weight: 900;
+    color: #ffae42;
+    margin-top: 4px;
+  }
+</style>
 </head>
+
 <body>
+  <img src="https://github.com/AriZ0nA98/Certified_WinRace/blob/testarea/certified_logo.png" alt="Certified Logo" class="ci-logo" />
 
-  <header>
-    <div class="title-block">
-      <h1>WIN-RACE</h1>
-      <div class="sponsor">
-        Sponsored by<br />
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games Logo" />
-      </div>
+  <div class="container">
+    <div class="sponsor">
+      <div>Sponsored by</div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games Logo" />
     </div>
-    <img src="DEIN_LOGO_OBEN_RECHTS.png" alt="Certified Identity Logo" class="logo-topright" />
-  </header>
 
-  <table class="tabelle">
-    <thead>
-      <tr>
-        <th>Teams</th>
-        <th>Blitz Royale</th>
-        <th>Zero Build</th>
-        <th>Party Animals B2B</th>
-        <th>Fall Guys Münze</th>
-      </tr>
-    </thead>
-    <tbody id="sheet-data">
-      <!-- wird per API gefüllt -->
-    </tbody>
-  </table>
+    <h1>WIN-RACE</h1>
 
-  <footer>
-    <div class="twitch-block">
-      <span>Live on</span><br />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg" alt="Twitch Logo" class="twitch-logo" />
-    </div>
-    <strong>MckyTV</strong> & <strong>xTheSolutionTV</strong><br />
-    Powered by<br />
-    <img src="DEIN_LOGO_UNTEN.png" alt="Certified Identity Logo" width="120" />
-  </footer>
+    <table id="teams-table">
+      <thead>
+        <tr>
+          <th>Teams</th>
+          <th>Blitz Royale</th>
+          <th>Zero Build</th>
+          <th>Party Animals B2B</th>
+          <th>Fall Guys Münze</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Daten kommen hier rein -->
+      </tbody>
+    </table>
 
-  <script>
-    const apiKey = "AIzaSyCvk4d8_WIg8YZY4G4JL-GJ2YjloRyHhJ0"; // Hier deinen API Key einfügen
-    const sheetId = "1WbZN0P6XVmwG8WTkx8IvLcH1l-Ed29bHTi3JX7RdvD8";
-    const range = "A1:E19";
+    <footer>
+      <div class="liveon">Live on</div>
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg" alt="Twitch Logo" />
+      <div class="channels"><strong>MckyTV</strong> &amp; <strong>xTheSolutionTV</strong></div>
+      <div class="powered">Powered by</div>
+      <div class="identity">Certified Identity</div>
+    </footer>
+  </div>
 
-    async function fetchData() {
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+<script>
+const sheetID = "1WbZN0P6XVmwG8WTkx8IvLcH1l-Ed29bHTi3JX7RdvD8";
+const apiKey = "AIzaSyCvk4d8_WIg8YZY4G4JL-GJ2YjloRyHhJ0";
+const sheetName = "Tabellenblatt1";
 
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const values = data.values;
-        const tbody = document.getElementById("sheet-data");
-        tbody.innerHTML = "";
+async function fetchSheetData() {
+  const response = await fetch(
+    `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetName}?key=${apiKey}`
+  );
+  const data = await response.json();
+  const rows = data.values;
+  const tbody = document.querySelector("#teams-table tbody");
+  tbody.innerHTML = "";
 
-        if (!values || values.length <= 1) return;
+  rows.slice(1).forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${row[0] || ""}</td>
+      <td>${row[1] === "TRUE" ? "✓" : ""}</td>
+      <td>${row[2] === "TRUE" ? "✓" : ""}</td>
+      <td>${row[3] === "TRUE" ? "✓" : ""}</td>
+      <td>${row[4] === "TRUE" ? "✓" : ""}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
 
-        for (let i = 1; i < values.length; i++) {
-          const row = values[i];
-          const tr = document.createElement("tr");
-
-          row.forEach((cell, index) => {
-            const td = document.createElement("td");
-            if (index === 0) {
-              td.textContent = cell || "";
-            } else {
-              const checkbox = document.createElement("input");
-              checkbox.type = "checkbox";
-              checkbox.disabled = true;
-              checkbox.checked = cell === "1" || cell.toLowerCase() === "true";
-              td.appendChild(checkbox);
-            }
-            tr.appendChild(td);
-          });
-
-          tbody.appendChild(tr);
-        }
-      } catch (error) {
-        console.error("Fehler beim Laden der Google Sheet Daten:", error);
-      }
-    }
-
-    fetchData();
-    setInterval(fetchData, 30000); // alle 30 Sekunden neu laden
-  </script>
+fetchSheetData();
+setInterval(fetchSheetData, 2000);
+</script>
 </body>
 </html>

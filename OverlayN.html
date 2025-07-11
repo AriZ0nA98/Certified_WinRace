@@ -139,32 +139,35 @@
   </div>
 
   <script>
-    window.onload = function() {
-      const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRUzeZnCmpPz6i0TcCMZdZ0eh_mZxRyAWYYnizKzFLcuYyS57AoxIcEfpEvUwZsndE5rXTED_xfxPaq/pub?output=csv';
+    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRUzeZnCmpPz6i0TcCMZdZ0eh_mZxRyAWYYnizKzFLcuYyS57AoxIcEfpEvUwZsndE5rXTED_xfxPaq/pubhtml';
 
+    function loadData() {
       Tabletop.init({
         key: publicSpreadsheetUrl,
         simpleSheet: true,
-        callback: showInfo
+        callback: function (data) {
+          const tbody = document.querySelector("#teams-table tbody");
+          tbody.innerHTML = "";
+          data.forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${row.Teamname}</td>
+              <td>${row.Part1 === "TRUE" ? "✓" : ""}</td>
+              <td>${row.Part2 === "TRUE" ? "✓" : ""}</td>
+              <td>${row.Part3 === "TRUE" ? "✓" : ""}</td>
+              <td>${row.Part4 === "TRUE" ? "✓" : ""}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
       });
-
-      function showInfo(data) {
-        const tbody = document.querySelector("#teams-table tbody");
-        tbody.innerHTML = "";
-
-        data.forEach(row => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${row.Teamname || row.teamname || row.Team || ""}</td>
-            <td>${row.Part1 === "TRUE" ? "✓" : ""}</td>
-            <td>${row.Part2 === "TRUE" ? "✓" : ""}</td>
-            <td>${row.Part3 === "TRUE" ? "✓" : ""}</td>
-            <td>${row.Part4 === "TRUE" ? "✓" : ""}</td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
     }
+
+    // Erstmal laden
+    window.onload = loadData;
+
+    // Danach alle 30 Sekunden neu laden
+    setInterval(loadData, 30000);
   </script>
 </body>
 </html>

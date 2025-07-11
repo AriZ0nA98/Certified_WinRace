@@ -103,9 +103,6 @@
     margin-top: 4px;
   }
 </style>
-
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-
 </head>
 
 <body>
@@ -146,7 +143,7 @@
   <script>
     const apiKey = "AIzaSyCvk4d8_WIg8YZY4G4JL-GJ2YjloRyHhJ0"; // <-- HIER DEIN API KEY
     const sheetId = "1WbZN0P6XVmwG8WTkx8IvLcH1l-Ed29bHTi3JX7RdvD8"; // Google Sheet ID
-    const range = "A2:E19"; // Zellbereich: Teamname + 4 Parts
+    const range = "A1:E19"; // Zellbereich: Teamname + 4 Parts
 
     async function ladeDaten() {
       const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;

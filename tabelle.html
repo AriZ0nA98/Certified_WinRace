@@ -144,36 +144,50 @@
   </div>
 
   <script>
-  const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRUzeZnCmpPz6i0TcCMZdZ0eh_mZxRyAWYYnizKzFLcuYyS57AoxIcEfpEvUwZsndE5rXTED_xfxPaq/pub?output=csv';
+    const apiKey = "AIzaSyCvk4d8_WIg8YZY4G4JL-GJ2YjloRyHhJ0"; // <-- HIER DEIN API KEY
+    const sheetId = "1WbZN0P6XVmwG8WTkx8IvLcH1l-Ed29bHTi3JX7RdvD8"; // Google Sheet ID
+    const range = "A2:E19"; // Zellbereich: Teamname + 4 Parts
 
-  function loadData() {
-  Papa.parse(csvUrl, {
-    download: true,
-    header: true,
-    complete: function(results) {
-      console.log("Geladene Daten:", results.data);
-      const tbody = document.querySelector("#teams-table tbody");
-      tbody.innerHTML = "";
-      results.data.forEach(row => {
-        console.log("Verarbeite Zeile:", row);
-        if (!row.Teamname) return;
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${row.Teamname}</td>
-          <td>${row.Part1 === "TRUE" ? "✓" : ""}</td>
-          <td>${row.Part2 === "TRUE" ? "✓" : ""}</td>
-          <td>${row.Part3 === "TRUE" ? "✓" : ""}</td>
-          <td>${row.Part4 === "TRUE" ? "✓" : ""}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    },
-    error: function(err) {
-      console.error("Fehler beim Laden der Tabelle:", err);
+    async function ladeDaten() {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const rows = data.values;
+        const tbody = document.querySelector("#tabelle tbody");
+        tbody.innerHTML = "";
+
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const tr = document.createElement("tr");
+
+          row.forEach((cell, index) => {
+            const td = document.createElement("td");
+
+            if (index === 0) {
+              td.textContent = cell;
+            } else {
+              const checkbox = document.createElement("input");
+              checkbox.type = "checkbox";
+              checkbox.disabled = true;
+              checkbox.checked = cell.toLowerCase() === "true" || cell === "1";
+              td.appendChild(checkbox);
+            }
+
+            tr.appendChild(td);
+          });
+
+          tbody.appendChild(tr);
+        }
+
+      } catch (err) {
+        console.error("Fehler beim Laden der Tabelle:", err);
+      }
     }
-  });
-}
-window.onload = loadData;
-</script>
+
+    ladeDaten();
+    setInterval(ladeDaten, 10000); // alle 10 Sekunden neu laden
+  </script>
 </body>
 </html>

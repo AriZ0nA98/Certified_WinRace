@@ -78,12 +78,23 @@
   }
   th, td {
   font-size: 14px;
-  width: 20%;
   box-sizing: border-box; /* sorgt dafür, dass padding/border mitgerechnet werden */
   border: 1px solid #ff7200;
   padding: 10px 15px;
   text-align: center;
   font-weight: bold;
+  }
+  
+  /* Erste Spalte: größer */
+  th:first-child,
+  td:first-child {
+    width: 35%;
+  }
+
+  /* Alle anderen Spalten: gleichmäßig verteilt */
+  th:not(:first-child),
+  td:not(:first-child) {
+    width: 16.25%;
   }
   th {
     background-color: #ff7200;

@@ -17,6 +17,7 @@ Korrekte Wahl = Win zählt
 Inkorrekte Wahl = Fall Guys muss erneut gespielt werden
 
 Allgemein gelten Spiele als abgeschlossen, wenn KLAR ersichtlich ist, dass der Sieg im RICHTIGEN Modus geholt wurde!
+Wins gerne clippen! Erleichtert die Beweissicherung!
 
 Halbfinale: UFC 5
 Begegnungen werden gelost.

@@ -140,21 +140,8 @@
     <h1>WIN-RACE</h1>
     <h2><a style="font-size: 15px;"> by</a><div>Mcky & Danny</div></h2>
 
-    <!-- Regelwerk-Container -->
-    <div id="regelwerk-container" style="white-space: pre-wrap;
-      color: #ffa500;
-      background: linear-gradient(90deg, #000000, #1a1a1a);
-      padding: 20px;
-      font-weight: bold;
-      font-size: 18px;
-      border: 2px solid #ff7200;
-      box-shadow:
-        -15px 0 30px -5px #1A7DD8,
-         15px 0 30px -5px #ff7200;
-      font-family: 'Bebas Neue', sans-serif;
-    ">
-      Lade Regelwerk...
-    </div>
+    <!-- Regelwerk anzeigen -->
+    <pre id="text-output">Lade Regelwerk…</pre>
 
 
     <footer>
@@ -176,18 +163,16 @@
   </div>
 
 <script>
-  fetch("regelwerk_text.txt")
-    .then(response => {
-      if (!response.ok) throw new Error("Fehler beim Laden der Regelwerk-Datei");
-      return response.text();
-    })
-    .then(text => {
-      document.getElementById("text-output").textContent = text.trim();
-    })
-    .catch(error => {
-      document.getElementById("text-output").textContent = "Regelwerk konnte nicht geladen werden.";
-      console.error(error);
-    });
+// Regelwerk laden
+fetch('regelwerk_text.txt')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('text-output').textContent = data;
+  })
+  .catch(err => {
+    document.getElementById('text-output').textContent = "Regelwerk konnte nicht geladen werden.";
+    console.error(err);
+  });
 </script>
 
 

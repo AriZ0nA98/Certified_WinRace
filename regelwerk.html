@@ -160,18 +160,19 @@
     </footer>
   </div>
 
+<div id="regelwerk-container">Lade Regelwerk...</div>
+
 <script>
-// Regelwerk laden
-fetch('regelwerk.txt')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('text-output').textContent = data;
-  })
-  .catch(err => {
-    document.getElementById('text-output').textContent = "Regelwerk konnte nicht geladen werden.";
-    console.error(err);
-  });
+  fetch("regelwerk_text.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("regelwerk-container").innerHTML = html;
+    })
+    .catch(() => {
+      document.getElementById("regelwerk-container").textContent = "Fehler beim Laden.";
+    });
 </script>
+
 
 </body>
 </html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WIN-RACE Regelwerk</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #AD5E13 30%, #1A7DD8);
+    color: #ffa500;
+    transform: scale(0.90);
+    transform-origin: top center;
+  }
+  .container {
+    max-width: 900px;
+    margin: 20px auto 40px;
+    padding: 0 15px;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .sponsor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.65rem;
+  }
+  .sponsor img {
+    margin-top: 8px;
+    width: 70px;
+    object-fit: contain;
+  }
+  .ci-logo-wrapper img {
+    width: 250px;
+    opacity: 0.7;
+    margin-top: 14px;
+    object-fit: contain;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 90px;
+    background: radial-gradient(circle, #000000 10%, #ff7200 95%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-top: -50px;
+    margin-bottom: 0px;
+    text-shadow: 2px 2px 0 white;
+  }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: #000000;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 0 white;
+  }
+  pre#text-output {
+    white-space: pre-wrap;
+    color: #ffa500;
+    background: linear-gradient(90deg, #000000, #1a1a1a);
+    padding: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid #ff7200;
+    box-shadow:
+      -15px 0 30px -5px #1A7DD8,
+      15px 0 30px -5px #ff7200;
+  }
+  footer {
+    margin-top: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  footer .liveon {
+    font-size: 1.2rem;
+    margin-bottom: -50px;
+  }
+  footer img {
+    margin: 6px 0;
+    height: 150px;
+    margin-bottom: -50px;
+  }
+  footer .channels {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #ffffff;
+  }
+  footer .powered {
+    margin-top: 12px;
+  }
+  footer .identity {
+    font-weight: 900;
+    color: #ffae42;
+    margin-top: 4px;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="sponsor">
+        <div>Sponsored by</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games Logo" />
+      </div>
+      <div class="ci-logo-wrapper">
+        <a href="https://certifiedidentity.de/" target="_blank">
+          <img src="https://raw.githubusercontent.com/AriZ0nA98/Certified_WinRace/refs/heads/main/certified_logo.png" alt="Certified Logo" />
+        </a>
+      </div>
+    </div>
+
+    <h1>WIN-RACE</h1>
+    <h2><a style="font-size: 15px;"> by</a><div>Mcky & Danny</div></h2>
+
+    <!-- Regelwerk anzeigen -->
+    <pre id="text-output">Lade Regelwerk…</pre>
+
+    <footer>
+      <div class="liveon">Live on</div>
+      <img src="https://raw.githubusercontent.com/AriZ0nA98/Certified_WinRace/3d388f441356f2bfd57eb7eba80a2d0903670b30/twitch_logo.svg" alt="Twitch Logo"/>
+      <div class="channels">
+        <strong><a href="https://twitch.tv/MckyTV" target="_blank" style="color: #ffffff; text-decoration: none;">MckyTV</a></strong>
+        &amp;
+        <strong><a href="https://twitch.tv/xTheSolutionTV" target="_blank" style="color: #ffffff; text-decoration: none;">xTheSolutionTV</a></strong>
+      </div>
+      <div class="powered"><strong>Powered by</strong></div>
+      <div class="identity">
+        <a href="https://certifiedidentity.de/" target="_blank" style="color: #ffffff; text-decoration: none;">Certified Identity</a>
+      </div>
+    </footer>
+  </div>
+
+<script>
+// Regelwerk laden
+fetch('regelwerk.txt')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('text-output').textContent = data;
+  })
+  .catch(err => {
+    document.getElementById('text-output').textContent = "Regelwerk konnte nicht geladen werden.";
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>

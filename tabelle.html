@@ -55,6 +55,7 @@
     text-align: center;
     margin-top: -50px;
     margin-bottom: 0px;
+    text-shadow: 2px 2px 2px white;
   }
   h2 {
     font-family: 'Bebas Neue', sans-serif;
@@ -64,6 +65,7 @@
     text-align: center;
     margin-top: -10px;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 1px white;
   }
   table {
     width: 100%;
@@ -71,25 +73,21 @@
     color: #ffa500;
     background: linear-gradient(90deg, #000000, #1a1a1a);
     box-shadow:
-    -15px 0 30px -5px #1A7DD8,  /* linker Glow – blau */
-     15px 0 30px -5px #ff7200;  /* rechter Glow – orange */
+      -15px 0 30px -5px #1A7DD8,
+       15px 0 30px -5px #ff7200;
   }
   th, td {
-  font-size: 18px;
-  box-sizing: border-box; /* sorgt dafür, dass padding/border mitgerechnet werden */
-  border: 1px solid #ff7200;
-  padding: 10px 15px;
-  text-align: center;
-  font-weight: bold;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 1px solid #ff7200;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: bold;
   }
-  
-  /* Erste Spalte: größer */
   th:first-child,
   td:first-child {
     width: 31%;
   }
-
-  /* Alle anderen Spalten: gleichmäßig verteilt */
   th:not(:first-child),
   td:not(:first-child) {
     width: 17.25%;
@@ -127,6 +125,19 @@
     color: #ffae42;
     margin-top: 4px;
   }
+  .regelwerk-button {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  .regelwerk-button a {
+    font-size: 18px;
+    color: #000000;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+  }
 </style>
 </head>
 
@@ -138,15 +149,18 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games Logo" />
       </div>
       <div class="ci-logo-wrapper">
-       <a href="https://certifiedidentity.de/" target="_blank">
-        <img src="https://raw.githubusercontent.com/AriZ0nA98/Certified_WinRace/refs/heads/main/certified_logo.png" alt="Certified Logo" />
-       </a>
+        <a href="https://certifiedidentity.de/" target="_blank">
+          <img src="https://raw.githubusercontent.com/AriZ0nA98/Certified_WinRace/refs/heads/main/certified_logo.png" alt="Certified Logo" />
+        </a>
       </div>
     </div>
 
-    <h1>
-      WIN-RACE
-    </h1>
+  <div class="regelwerk-button" style="text-align: right; margin-top: 10px; margin-bottom: 20px;">
+    <a href="regelwerk.html">Regelwerk anzeigen</a>
+  </div>
+
+
+    <h1>WIN-RACE</h1>
 
     <h2>
       <a style="font-size: 15px;"> by</a>
@@ -172,17 +186,13 @@
       <div class="liveon">Live on</div>
       <img src="https://raw.githubusercontent.com/AriZ0nA98/Certified_WinRace/3d388f441356f2bfd57eb7eba80a2d0903670b30/twitch_logo.svg" alt="Twitch Logo"/>
       <div class="channels">
-       <strong><a href="https://twitch.tv/MckyTV" target="_blank" style="color: #ffffff; text-decoration: none;">MckyTV</a></strong>
-       &amp;
-       <strong><a href="https://twitch.tv/xTheSolutionTV" target="_blank" style="color: #ffffff; text-decoration: none;">xTheSolutionTV</a></strong>
+        <strong><a href="https://twitch.tv/MckyTV" target="_blank" style="color: #ffffff; text-decoration: none;">MckyTV</a></strong>
+        &amp;
+        <strong><a href="https://twitch.tv/xTheSolutionTV" target="_blank" style="color: #ffffff; text-decoration: none;">xTheSolutionTV</a></strong>
       </div>
-      <div class="powered">
-        <strong>
-          <a> Powered by </a>
-        </strong>
-      </div>
+      <div class="powered"><strong>Powered by</strong></div>
       <div class="identity">
-       <a href="https://certifiedidentity.de/" target="_blank" style="color: #ffffff; text-decoration: none;">Certified Identity</a>
+        <a href="https://certifiedidentity.de/" target="_blank" style="color: #ffffff; text-decoration: none;">Certified Identity</a>
       </div>
     </footer>
   </div>
@@ -219,12 +229,10 @@ setInterval(fetchSheetData, 2000);
 </script>
 
 <script>
-  // Rechtsklick deaktivieren
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
   });
 
-  // Tastenkombinationen blockieren (F12, Strg+U, Dev Tools)
   document.addEventListener("keydown", function (e) {
     if (e.key === "F12") e.preventDefault();
     if (e.ctrlKey && e.key.toLowerCase() === "u") e.preventDefault();

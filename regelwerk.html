@@ -184,7 +184,7 @@
       return response.text();
     })
     .then(html => {
-      document.getElementById("regelwerk-container").innerHTML = html;
+      document.getElementById("regelwerk-container").innerHTML = html.trim;
     })
     .catch(error => {
       document.getElementById("regelwerk-container").textContent = "Regelwerk konnte nicht geladen werden.";

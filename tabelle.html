@@ -195,10 +195,10 @@ async function fetchSheetData() {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row[0] || ""}</td>
-      <td>${row[1] === "TRUE" ? "✓" : ""}</td>
-      <td>${row[2] === "TRUE" ? "✓" : ""}</td>
-      <td>${row[3] === "TRUE" ? "✓" : ""}</td>
-      <td>${row[4] === "TRUE" ? "✓" : ""}</td>
+      <td>${row[1] === "Y" ? "✓" : ""}</td>
+      <td>${row[2] === "Y" ? "✓" : ""}</td>
+      <td>${row[3] === "Y" ? "✓" : ""}</td>
+      <td>${row[4] === "Y" ? "✓" : ""}</td>
     `;
     tbody.appendChild(tr);
   });

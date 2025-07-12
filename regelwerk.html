@@ -164,12 +164,16 @@
 
 <script>
   fetch("regelwerk_text.html")
-    .then(res => res.text())
+    .then(response => {
+      if (!response.ok) throw new Error("Fehler beim Laden der Regelwerk-Datei");
+      return response.text();
+    })
     .then(html => {
       document.getElementById("regelwerk-container").innerHTML = html;
     })
-    .catch(() => {
-      document.getElementById("regelwerk-container").textContent = "Fehler beim Laden.";
+    .catch(error => {
+      document.getElementById("regelwerk-container").textContent = "Regelwerk konnte nicht geladen werden.";
+      console.error(error);
     });
 </script>
 

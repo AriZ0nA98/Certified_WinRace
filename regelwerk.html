@@ -140,8 +140,7 @@
     <h2><a style="font-size: 15px;"> by</a><div>Mcky & Danny</div></h2>
 
     <!-- Regelwerk-Container -->
-    <div id="regelwerk-container" style="
-      white-space: pre-wrap;
+    <div id="regelwerk-container" style="white-space: pre-wrap;
       color: #ffa500;
       background: linear-gradient(90deg, #000000, #1a1a1a);
       padding: 20px;
@@ -175,8 +174,6 @@
     </footer>
   </div>
 
-<div id="regelwerk-container">Lade Regelwerk...</div>
-
 <script>
   fetch("regelwerk_text.html")
     .then(response => {
@@ -184,7 +181,7 @@
       return response.text();
     })
     .then(html => {
-      document.getElementById("regelwerk-container").innerHTML = html.trim;
+      document.getElementById("regelwerk-container").innerHTML = html;
     })
     .catch(error => {
       document.getElementById("regelwerk-container").textContent = "Regelwerk konnte nicht geladen werden.";
